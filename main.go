@@ -7,6 +7,7 @@ import (
 	"fintrack-backend/routes"
 	"fintrack-backend/services"
 	"log"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -24,5 +25,5 @@ func main() {
 
 	routes.Setup(app, authController)
 
-	log.Fatal(app.Listen(":3000"))
+	log.Fatal(app.Listen(":" + os.Getenv("PORT")))
 }
