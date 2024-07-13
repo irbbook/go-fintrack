@@ -15,6 +15,16 @@ type authService struct {
 	repo repositories.AuthRepository
 }
 
+// GetUsers implements AuthService.
+func (a *authService) GetUsers() ([]models.User, error) {
+	users, err := a.repo.GetUsers()
+	if err != nil {
+		return nil, err
+	}
+
+	return users, nil
+}
+
 // Login implements AuthService.
 func (a *authService) Login(email string, password string) (string, error) {
 	user, err := a.repo.FindUserByEmail(email)

@@ -18,6 +18,7 @@ func main() {
 	app := fiber.New()
 
 	config.InitDatabase()
+	config.InitRedis()
 
 	authRepo := repositories.NewAuthRepository(config.DB)
 	authService := services.NewAuthService(authRepo)

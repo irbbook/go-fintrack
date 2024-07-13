@@ -53,3 +53,11 @@ func (ctrl *AuthController) Login(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{"token": token})
 }
+
+func (ctrl *AuthController) GetUsers(c *fiber.Ctx) error {
+	results, err := ctrl.service.GetUsers()
+	if err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": fiber.ErrNotFound.Message})
+	}
+	return c.JSON(fiber.Map{"data": results})
+}
